@@ -193,8 +193,11 @@ void Antenna::handleCQI(cMessage* msg)
     }
 }
 
+
 void Antenna::handleFrame()
 {
+
+
 /* +-----------------------------------------------------------------------------------+
  * | AUTHOR : FEDERICO                                                                 |
  * +-----------------------------------------------------------------------------------+
@@ -215,25 +218,69 @@ void Antenna::handleFrame()
     // To store the total number of bytes sent in a timeslot.
     int bytesToSend = 0;
 
-    // Frame to send
-    Frame* frameToSend = new Frame();
+
+    int nRB = 25;
+    int remainingRB = nRB;
 
     for(int i = 0; i < population; i++)
     {
         // Retrieving the user under service.
         currentUser = CQIs[i]->getId();
-
         // Retrieving the current CQI sent by the user under service.
         currentCQI = CQIs[i]->getCQI();
 
-        #ifdef DEBUG
-        EV << "Antenna::handleFrame() - user" << currentUser << " is currently under service (CQI=" << currentCQI << ")" << endl;
-        #endif
+        int dimRB = CQI_to_BYTES(currentCQI);
 
-        bytesToSend += serveUser(currentUser, currentCQI, &remainingRBs, frameToSend);
+        // get user queue
+        UserQueue * queue = getQueueById(currentUser);
+        std::pair<simtime_t,int> pkt;
+
+        int remainingBytesFrame = remainingRB * dimRB;
+
+        queue->showQueue();
+
+        EV << "RB dimension is " << dimRB <<endl;
+
+        while(!queue->getQueue()->empty()){
+
+            pkt.second = queue->getQueue()->begin()->second;
+            pkt.first = queue->getQueue()->begin()->first;
+
+            if (pkt.second <= remainingBytesFrame){
+
+                // serve packet
+                queue->getQueue()->erase(queue->getQueue()->begin());
+                remainingBytesFrame-=pkt.second;
+                bytesToSend+=pkt.second;
+
+                // send info to user
+                Packet * packet = new Packet;
+                packet->setSize(pkt.second);
+                packet->setTimestamp(pkt.first);
+                send(packet,"out",currentUser);
+
+                EV << "Served user "<< currentUser << "packet size = " << pkt.second << endl;
+                EV << "bytes that i can use for the user are " << remainingBytesFrame << endl;
+
+            }
+            else
+            {
+                EV << "Cannot serve user, packet size is too large packet_size = " << pkt.second << endl;
+                break;
+            }
+         }
+
+        // need to calculate used RBs
+        int allocatedFrameBytes = remainingRB * dimRB - remainingBytesFrame;
+        int allocatedRBs = (allocatedFrameBytes % dimRB) ? allocatedFrameBytes/dimRB + 1: allocatedFrameBytes/dimRB;
+
+        EV << "Number of used bytes for user " << currentUser << "are " << allocatedFrameBytes << endl;
+        EV << "Number of used RBs for user " << currentUser << "are " << allocatedRBs << endl;
+
+        remainingRB -= allocatedRBs;
+
+        EV << "Number or actual RB are " << remainingRB << endl;
     }
-
-    delete(frameToSend);
 
     // Recording throughtput's statistics
     emit(throughputSignal, bytesToSend);

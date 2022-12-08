@@ -3,6 +3,7 @@
 #include "Frame.h"
 
 #define DEBUG ;
+#define VALIDATION_TEST ;
 
 namespace opportunisticcellularnetwork {
 
@@ -30,7 +31,6 @@ void Cellular::initialize()
 
 void Cellular::handleMessage(cMessage *msg)
 {
-
     /* +--------------------------------------------------------------------------------+
      * | Handshake                                                                      |
      * | The Antenna sends a CQI request to all the cellular.                           |
@@ -38,7 +38,22 @@ void Cellular::handleMessage(cMessage *msg)
      * | response with the CQI                                                          |
      * +--------------------------------------------------------------------------------+
      */
-    if(strcmp(msg->getName(), "CQI") == 0)
+    if (msg->isSelfMessage())
+    {
+        // New cqi message to send
+        int cell_id = par("id").intValue();
+        CQIMessage * cqi = new CQIMessage();
+        CQI_ = calculateCQI(); //Calculate every timeslot
+        cqi->setId(cell_id);
+        cqi->setCQI(CQI_);
+
+        send(cqi,"out");
+
+        #ifdef DEBUG
+        EV << getName() << par("id").intValue() <<"::handleMessage() - A new CQI RESPONSE has just been sent! CQI=" << CQI_ << endl;
+        #endif
+    }
+    else if(strcmp(msg->getName(), "CQI") == 0)
     {
         #ifdef DEBUG
         EV << getName() << par("id").intValue() <<"::handleMessage() - A new CQI REQUEST is just arrived!" << endl;
@@ -50,29 +65,19 @@ void Cellular::handleMessage(cMessage *msg)
         // reset n of bytes received in past TS
         receivedBytesTS = 0;
 
-        // New cqi message to send
-        int cell_id = par("id").intValue();
-        CQIMessage * cqi = new CQIMessage();
-        CQI_ = calculateCQI(); //Calculate every timeslot
-        cqi->setId(cell_id);
-        cqi->setCQI(CQI_);
+        cMessage* self = new cMessage("beep");
+        scheduleAt(simTime() + uniform(0.0005,0.0009),self);
 
-        send(cqi, "out");
-
-        #ifdef DEBUG
-        EV << getName() << par("id").intValue() <<"::handleMessage() - A new CQI RESPONSE has just been sent! CQI=" << CQI_ << endl;
-        #endif
     }
     else
     {
-        /* +--------------------------------------------------------------------------------+
+           /* +--------------------------------------------------------------------------------+
             * | Frame Detection                                                                |
             * | All the devices receive the frames (broadcast), so the cellular has to         |
             * | detect which RBs inside the frame  addressed to it                             |
-            * | Format: |RB=dest|dim|bytes|RB=   |                                             |
+            * | Format: |RB=dest|dim|bytes|RB=                                                 |
             * +--------------------------------------------------------------------------------+
             */
-
         #ifdef DEBUG
         EV << getName() << par("id").intValue() <<"::handleMessage() - Frame detection" << endl;
         #endif
@@ -85,8 +90,6 @@ void Cellular::handleMessage(cMessage *msg)
         #ifdef DEBUG
         EV << getName() << par("id").intValue() <<"::handleMessage() - Frame detection - frame, received packet - size = "<< packetInfo->getSize() << endl;
         #endif
-
-
     }
 
 
@@ -114,10 +117,14 @@ void Cellular::extractRB(Frame* frame, Frame *detected)
 
 int Cellular::calculateCQI()
 {
+#ifdef VALIDATION_TEST
+    return par("CQI");
+#endif
+
     if(par("typeCQI").boolValue() == false){
-        return uniform(1, par("uniform_r").intValue());
+        return uniform(1, par("uniform_r").intValue(),0);
     } else {
-        return binomial(par("binomial_n").intValue(), par("binomial_p").intValue());
+        return binomial(par("binomial_n").intValue(), par("binomial_p").intValue(),0);
     }
 }
 

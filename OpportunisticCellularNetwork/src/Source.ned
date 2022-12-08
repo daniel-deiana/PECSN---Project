@@ -3,21 +3,18 @@ package opportunisticcellularnetwork;
 
  // A source models an entity that forwards packets either from internal or esternal cell
  
-simple Source
-
-{ 
+simple Source { 
  	parameters:
- 	    int id;
- 	    
- 	    // uniform or exp delay 
- 	    bool isDelayUniform = default(false);
- 	    
+ 	    // testing flag
+ 	    bool testing = default(false);
+ 	    // rate of packets inter arrivals 
+    	double rate; 	    
+ 	    // index of module
+ 	    int id; 	     	    
  	    // max packet dimension
     	int maxPacketSize = 75;
-    	
-    	// rate between consecutive packets arrivals
-    	double exponentialMean @unit(s) = 5ms;
-
+    	// test parameter for packet with fixed size 	
+    	int fixedPacketSize = 50;    	
    gates:
         output out;
 }

@@ -10,6 +10,9 @@ simple Cellular
         int binomial_p = default(0); 		// param p for binomial distribution
         int uniform_r = default(0); 		// range for uniform random generator 
         
+        // validation test parameters
+        int CQI; 
+        
     // +-------------------------------------------------------------------------------+
     //  USER Throughput: User's number of bytes received at each timeslot 
     	@signal[userThroughputSignal](type=int);

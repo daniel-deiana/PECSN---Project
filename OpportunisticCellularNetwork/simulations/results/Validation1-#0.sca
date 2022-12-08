@@ -1,0 +1,131 @@
+version 3
+run Validation1-0-20221208-11:12:50-47745
+attr configname Validation1
+attr datetime 20221208-11:12:50
+attr datetimef 20221208-111250
+attr experiment Validation1
+attr inifile ../simulations/omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network OpportunisticCellularNetwork
+attr processid 47745
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config **.source[*].rate 20
+config **.population 4
+config **.cellular[0].CQI 7
+config **.cellular[1].CQI 8
+config **.cellular[2].CQI 13
+config **.cellular[3].CQI 14
+config network OpportunisticCellularNetwork
+config sim-time-limit 3s
+config **.population 4
+config **.antenna.stage 0
+config **.antenna.timeslot "1 ms"
+config **.antenna.queueDimension 0
+config **.cellular[*].typeCQI false
+config **.cellular[*].uniform_r 15
+config num-rngs 3
+config **.cellular[*].rng-0 0
+config **.source[*].rng-0 1
+config "** source[*].rng-1" 2
+
+par OpportunisticCellularNetwork.antenna typename "\"opportunisticcellularnetwork.Antenna\""
+par OpportunisticCellularNetwork.antenna stage 0
+par OpportunisticCellularNetwork.antenna population 4
+par OpportunisticCellularNetwork.antenna timeslot 0.001s
+attr unit s
+par OpportunisticCellularNetwork.antenna maxFrameDim 25
+par OpportunisticCellularNetwork.antenna queueDimension 0
+par OpportunisticCellularNetwork.cellular[0] typename "\"opportunisticcellularnetwork.Cellular\""
+par OpportunisticCellularNetwork.cellular[0] id 0
+par OpportunisticCellularNetwork.cellular[0] typeCQI false
+par OpportunisticCellularNetwork.cellular[0] binomial_n 0
+par OpportunisticCellularNetwork.cellular[0] binomial_p 0
+par OpportunisticCellularNetwork.cellular[0] uniform_r 15
+par OpportunisticCellularNetwork.cellular[0] CQI 7
+scalar OpportunisticCellularNetwork.cellular[0] userResponseTime:mean 0.001816197957
+attr "" ""
+attr recordingmode mean
+attr source userResponseTimeSignal
+scalar OpportunisticCellularNetwork.cellular[0] userThroughput:mean 0.0033322225924692
+attr "" ""
+attr recordingmode mean
+attr source userThroughputSignal
+par OpportunisticCellularNetwork.cellular[1] typename "\"opportunisticcellularnetwork.Cellular\""
+par OpportunisticCellularNetwork.cellular[1] id 1
+par OpportunisticCellularNetwork.cellular[1] typeCQI false
+par OpportunisticCellularNetwork.cellular[1] binomial_n 0
+par OpportunisticCellularNetwork.cellular[1] binomial_p 0
+par OpportunisticCellularNetwork.cellular[1] uniform_r 15
+par OpportunisticCellularNetwork.cellular[1] CQI 8
+scalar OpportunisticCellularNetwork.cellular[1] userResponseTime:mean 1.0993802496776
+attr "" ""
+attr recordingmode mean
+attr source userResponseTimeSignal
+scalar OpportunisticCellularNetwork.cellular[1] userThroughput:mean 203.14561812729
+attr "" ""
+attr recordingmode mean
+attr source userThroughputSignal
+par OpportunisticCellularNetwork.cellular[2] typename "\"opportunisticcellularnetwork.Cellular\""
+par OpportunisticCellularNetwork.cellular[2] id 2
+par OpportunisticCellularNetwork.cellular[2] typeCQI false
+par OpportunisticCellularNetwork.cellular[2] binomial_n 0
+par OpportunisticCellularNetwork.cellular[2] binomial_p 0
+par OpportunisticCellularNetwork.cellular[2] uniform_r 15
+par OpportunisticCellularNetwork.cellular[2] CQI 13
+scalar OpportunisticCellularNetwork.cellular[2] userResponseTime:mean 0.0005040990458211
+attr "" ""
+attr recordingmode mean
+attr source userResponseTimeSignal
+scalar OpportunisticCellularNetwork.cellular[2] userThroughput:mean 761.77040986338
+attr "" ""
+attr recordingmode mean
+attr source userThroughputSignal
+par OpportunisticCellularNetwork.cellular[3] typename "\"opportunisticcellularnetwork.Cellular\""
+par OpportunisticCellularNetwork.cellular[3] id 3
+par OpportunisticCellularNetwork.cellular[3] typeCQI false
+par OpportunisticCellularNetwork.cellular[3] binomial_n 0
+par OpportunisticCellularNetwork.cellular[3] binomial_p 0
+par OpportunisticCellularNetwork.cellular[3] uniform_r 15
+par OpportunisticCellularNetwork.cellular[3] CQI 14
+scalar OpportunisticCellularNetwork.cellular[3] userResponseTime:mean 0.00050312133796913
+attr "" ""
+attr recordingmode mean
+attr source userResponseTimeSignal
+scalar OpportunisticCellularNetwork.cellular[3] userThroughput:mean 758.21692769077
+attr "" ""
+attr recordingmode mean
+attr source userThroughputSignal
+par OpportunisticCellularNetwork.source[0] typename "\"opportunisticcellularnetwork.Source\""
+par OpportunisticCellularNetwork.source[0] testing false
+par OpportunisticCellularNetwork.source[0] rate 20
+par OpportunisticCellularNetwork.source[0] id 0
+par OpportunisticCellularNetwork.source[0] maxPacketSize 75
+par OpportunisticCellularNetwork.source[0] fixedPacketSize 50
+par OpportunisticCellularNetwork.source[1] typename "\"opportunisticcellularnetwork.Source\""
+par OpportunisticCellularNetwork.source[1] testing false
+par OpportunisticCellularNetwork.source[1] rate 20
+par OpportunisticCellularNetwork.source[1] id 1
+par OpportunisticCellularNetwork.source[1] maxPacketSize 75
+par OpportunisticCellularNetwork.source[1] fixedPacketSize 50
+par OpportunisticCellularNetwork.source[2] typename "\"opportunisticcellularnetwork.Source\""
+par OpportunisticCellularNetwork.source[2] testing false
+par OpportunisticCellularNetwork.source[2] rate 20
+par OpportunisticCellularNetwork.source[2] id 2
+par OpportunisticCellularNetwork.source[2] maxPacketSize 75
+par OpportunisticCellularNetwork.source[2] fixedPacketSize 50
+par OpportunisticCellularNetwork.source[3] typename "\"opportunisticcellularnetwork.Source\""
+par OpportunisticCellularNetwork.source[3] testing false
+par OpportunisticCellularNetwork.source[3] rate 20
+par OpportunisticCellularNetwork.source[3] id 3
+par OpportunisticCellularNetwork.source[3] maxPacketSize 75
+par OpportunisticCellularNetwork.source[3] fixedPacketSize 50
+par OpportunisticCellularNetwork typename "\"opportunisticcellularnetwork.simulations.OpportunisticCellularNetwork\""
+par OpportunisticCellularNetwork population 4
+
