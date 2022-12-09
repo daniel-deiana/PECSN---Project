@@ -1,8 +1,8 @@
 version 3
-run Validation1-0-20221208-11:12:50-47745
+run Validation1-0-20221208-22:09:54-55868
 attr configname Validation1
-attr datetime 20221208-11:12:50
-attr datetimef 20221208-111250
+attr datetime 20221208-22:09:54
+attr datetimef 20221208-220954
 attr experiment Validation1
 attr inifile ../simulations/omnetpp.ini
 attr iterationvars ""
@@ -10,13 +10,13 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network OpportunisticCellularNetwork
-attr processid 47745
+attr processid 55868
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
-config **.source[*].rate 20
+config **.source[*].rate 4
 config **.population 4
 config **.cellular[0].CQI 7
 config **.cellular[1].CQI 8
@@ -49,11 +49,11 @@ par OpportunisticCellularNetwork.cellular[0] binomial_n 0
 par OpportunisticCellularNetwork.cellular[0] binomial_p 0
 par OpportunisticCellularNetwork.cellular[0] uniform_r 15
 par OpportunisticCellularNetwork.cellular[0] CQI 7
-scalar OpportunisticCellularNetwork.cellular[0] userResponseTime:mean 0.001816197957
+scalar OpportunisticCellularNetwork.cellular[0] userResponseTime:mean 0.00053034931549737
 attr "" ""
 attr recordingmode mean
 attr source userResponseTimeSignal
-scalar OpportunisticCellularNetwork.cellular[0] userThroughput:mean 0.0033322225924692
+scalar OpportunisticCellularNetwork.cellular[0] userThroughput:mean 150.90503165611
 attr "" ""
 attr recordingmode mean
 attr source userThroughputSignal
@@ -64,11 +64,11 @@ par OpportunisticCellularNetwork.cellular[1] binomial_n 0
 par OpportunisticCellularNetwork.cellular[1] binomial_p 0
 par OpportunisticCellularNetwork.cellular[1] uniform_r 15
 par OpportunisticCellularNetwork.cellular[1] CQI 8
-scalar OpportunisticCellularNetwork.cellular[1] userResponseTime:mean 1.0993802496776
+scalar OpportunisticCellularNetwork.cellular[1] userResponseTime:mean 0.00050357676852184
 attr "" ""
 attr recordingmode mean
 attr source userResponseTimeSignal
-scalar OpportunisticCellularNetwork.cellular[1] userThroughput:mean 203.14561812729
+scalar OpportunisticCellularNetwork.cellular[1] userThroughput:mean 152.83005664778
 attr "" ""
 attr recordingmode mean
 attr source userThroughputSignal
@@ -79,11 +79,11 @@ par OpportunisticCellularNetwork.cellular[2] binomial_n 0
 par OpportunisticCellularNetwork.cellular[2] binomial_p 0
 par OpportunisticCellularNetwork.cellular[2] uniform_r 15
 par OpportunisticCellularNetwork.cellular[2] CQI 13
-scalar OpportunisticCellularNetwork.cellular[2] userResponseTime:mean 0.0005040990458211
+scalar OpportunisticCellularNetwork.cellular[2] userResponseTime:mean 0.00048107620489073
 attr "" ""
 attr recordingmode mean
 attr source userResponseTimeSignal
-scalar OpportunisticCellularNetwork.cellular[2] userThroughput:mean 761.77040986338
+scalar OpportunisticCellularNetwork.cellular[2] userThroughput:mean 152.43085638121
 attr "" ""
 attr recordingmode mean
 attr source userThroughputSignal
@@ -94,35 +94,35 @@ par OpportunisticCellularNetwork.cellular[3] binomial_n 0
 par OpportunisticCellularNetwork.cellular[3] binomial_p 0
 par OpportunisticCellularNetwork.cellular[3] uniform_r 15
 par OpportunisticCellularNetwork.cellular[3] CQI 14
-scalar OpportunisticCellularNetwork.cellular[3] userResponseTime:mean 0.00050312133796913
+scalar OpportunisticCellularNetwork.cellular[3] userResponseTime:mean 0.00053387084042202
 attr "" ""
 attr recordingmode mean
 attr source userResponseTimeSignal
-scalar OpportunisticCellularNetwork.cellular[3] userThroughput:mean 758.21692769077
+scalar OpportunisticCellularNetwork.cellular[3] userThroughput:mean 150.93668777074
 attr "" ""
 attr recordingmode mean
 attr source userThroughputSignal
 par OpportunisticCellularNetwork.source[0] typename "\"opportunisticcellularnetwork.Source\""
 par OpportunisticCellularNetwork.source[0] testing false
-par OpportunisticCellularNetwork.source[0] rate 20
+par OpportunisticCellularNetwork.source[0] rate 4
 par OpportunisticCellularNetwork.source[0] id 0
 par OpportunisticCellularNetwork.source[0] maxPacketSize 75
 par OpportunisticCellularNetwork.source[0] fixedPacketSize 50
 par OpportunisticCellularNetwork.source[1] typename "\"opportunisticcellularnetwork.Source\""
 par OpportunisticCellularNetwork.source[1] testing false
-par OpportunisticCellularNetwork.source[1] rate 20
+par OpportunisticCellularNetwork.source[1] rate 4
 par OpportunisticCellularNetwork.source[1] id 1
 par OpportunisticCellularNetwork.source[1] maxPacketSize 75
 par OpportunisticCellularNetwork.source[1] fixedPacketSize 50
 par OpportunisticCellularNetwork.source[2] typename "\"opportunisticcellularnetwork.Source\""
 par OpportunisticCellularNetwork.source[2] testing false
-par OpportunisticCellularNetwork.source[2] rate 20
+par OpportunisticCellularNetwork.source[2] rate 4
 par OpportunisticCellularNetwork.source[2] id 2
 par OpportunisticCellularNetwork.source[2] maxPacketSize 75
 par OpportunisticCellularNetwork.source[2] fixedPacketSize 50
 par OpportunisticCellularNetwork.source[3] typename "\"opportunisticcellularnetwork.Source\""
 par OpportunisticCellularNetwork.source[3] testing false
-par OpportunisticCellularNetwork.source[3] rate 20
+par OpportunisticCellularNetwork.source[3] rate 4
 par OpportunisticCellularNetwork.source[3] id 3
 par OpportunisticCellularNetwork.source[3] maxPacketSize 75
 par OpportunisticCellularNetwork.source[3] fixedPacketSize 50

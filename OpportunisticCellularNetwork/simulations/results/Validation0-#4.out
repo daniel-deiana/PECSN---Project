@@ -1,0 +1,2 @@
+
+<!> Error: Submodule antenna: Cannot resolve module type 'Antenna' (not in the loaded NED files?), at /Users/daniel/PECSN---Project/OpportunisticCellularNetwork/simulations/OpportunisticCellularNetwork.ned:14 -- in module (omnetpp::cModule) OpportunisticCellularNetwork (id=1), during network setup
